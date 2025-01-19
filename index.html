@@ -3,10 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width-device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Etch-a-Sketch</title>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+    <script src="script.js" defer></script>
 </head>
 <body>
 
+    <h1>ETCH-a-SKETCH</h1>
+
+    <div class="container">
+    <div class="side-bar">
+        <div id="color-options">
+            <!-- make the pen and backgorund color selector + spans for description --> 
+                <div class="card">
+                    <input type="color">
+                    <p>pen color</p>
+                </div>
+                <div class="card">
+                    <input type="color">
+                    <p>background color</p>
+                </div>
+        </div>
+        <div class="btn-container">
+            <ul>
+                <li><button type="button" id="pen-btn">color mode</button></li>
+                <li><button type="button" id="rainbow-btn">rainbow mode</button></li>
+                <li><button type="button" id="shade-btn">shade mode</button></li>
+                <li><button type="button" id="eraser-btn">Eraser</button></li>
+            <ul>
+        </div>
+        <div>
+            size select
+        </div>
+        <button type="button" id="clear">Clear</button>
+    </div>
+    <div class="grid"></div>
+    </div>
 </body>
 
 
