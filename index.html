@@ -17,11 +17,11 @@
         <div id="color-options">
             <!-- make the pen and backgorund color selector + spans for description --> 
                 <div class="card">
-                    <input type="color">
+                    <input type="color" class="pen-color">
                     <p>pen color</p>
                 </div>
                 <div class="card">
-                    <input type="color">
+                    <input type="color" class="background-color">
                     <p>background color</p>
                 </div>
         </div>
@@ -35,6 +35,7 @@
         </div>
         <div>
             size select
+            <input class="slider" type="range" min="2" max="64" value="16">
         </div>
         <button type="button" id="clear">Clear</button>
     </div>

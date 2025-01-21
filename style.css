@@ -107,14 +107,13 @@ ul {
 
 .column {
     flex-grow: 1;
-    background-color: brown;
     border: 0px;
     display: flex;
 }
 
 .cell {
     flex-grow: 1;
-    border-color: white;
+    border: 0px;
 }
 
 #color-options {
