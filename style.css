@@ -118,6 +118,7 @@ ul {
 .cell {
     flex-grow: 1;
     border: 0px;
+    user-select: none;
 }
 
 #color-options {
