@@ -7,6 +7,7 @@ const shadeMdBtn = document.querySelector("#shade-btn");
 const colorMdBtn = document.querySelector("#pen-btn");
 const rainbowMdBtn = document.querySelector("#rainbow-btn");
 const eraserMdBtn = document.querySelector("#eraser-btn");
+const span = document.querySelector("#cur-size-span");
 
 let currentColor = "black"
 let bgColor = "white";
@@ -90,6 +91,8 @@ function createGrid(x){
         }
         grid.appendChild(column);
     }
+
+    span.textContent = `${x} x ${x}`;
 }
 
 function getRainbowColor(){

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width-device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Etch-a-Sketch</title>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
@@ -15,7 +15,6 @@
     <div class="container">
     <div class="side-bar">
         <div id="color-options">
-            <!-- make the pen and backgorund color selector + spans for description --> 
                 <div class="card">
                     <input type="color" class="pen-color">
                     <p>pen color</p>
@@ -34,7 +33,7 @@
             <ul>
         </div>
         <div>
-            size select
+           <span id="cur-size-span"> </span> 
             <input class="slider" type="range" min="2" max="64" value="16">
         </div>
         <button type="button" id="clear">Clear</button>
