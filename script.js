@@ -6,10 +6,11 @@ const clrBtn = document.querySelector("#clear");
 const shadeMdBtn = document.querySelector("#shade-btn");
 const colorMdBtn = document.querySelector("#pen-btn");
 const rainbowMdBtn = document.querySelector("#rainbow-btn");
+const eraserMdBtn = document.querySelector("#eraser-btn");
 
 let currentColor = "black"
 let bgColor = "white";
-let option = 0 // 0: color mode, 1: rainbow, 2: shade
+let option = 0 // 0: color mode, 1: rainbow, 2: shade, 3: eraser
 
 
 let mouseDown = false;
@@ -34,6 +35,11 @@ shadeMdBtn.addEventListener("click", () => {
     console.log("shade button clicked");
     option = 2; 
 
+});
+
+eraserMdBtn.addEventListener("click", () => {
+    console.log("eraser button clicked");
+    option = 3;
 });
 
 clrBtn.addEventListener("click", () => {
@@ -63,7 +69,7 @@ grid.addEventListener("mouseover", (event)=>{
         } else if(option === 1){
             console.log("ranbow is bein painted");
             event.target.style.backgroundColor = getRainbowColor();
-        } else {
+        } else if(option === 2){
             console.log("shade is being painted");
 
             const curOpacity = parseFloat(window.getComputedStyle(event.target).opacity) || 0;
@@ -73,6 +79,8 @@ grid.addEventListener("mouseover", (event)=>{
                 event.target.style.opacity = result;
                 console.log("im inside of you");
             }
+        } else {
+            event.target.style.backgroundColor = bgColor;           
         }
     }
 });
