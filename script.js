@@ -22,23 +22,19 @@ createGrid(slider.value);
 
 /* BUTTONS */
 colorMdBtn.addEventListener("click", () => {
-    console.log("color button clicked");
     option = 0; 
 });
 
 rainbowMdBtn.addEventListener("click", () => {
-    console.log("rainbow button clicked");
     option = 1;
 });
 
 shadeMdBtn.addEventListener("click", () => {
-    console.log("shade button clicked");
     option = 2; 
 
 });
 
 eraserMdBtn.addEventListener("click", () => {
-    console.log("eraser button clicked");
     option = 3;
 });
 
@@ -65,19 +61,14 @@ grid.addEventListener("mouseover", (event)=>{
     if(event.target && event.target.classList.contains("cell") && mouseDown == true) {
         if(option === 0){
             event.target.style.backgroundColor = currentColor;
-            console.log("color is bein painted");
         } else if(option === 1){
-            console.log("ranbow is bein painted");
             event.target.style.backgroundColor = getRainbowColor();
         } else if(option === 2){
-            console.log("shade is being painted");
-
             const curOpacity = parseFloat(window.getComputedStyle(event.target).opacity) || 0;
 
             if(curOpacity < 1.0){
                 var result = curOpacity + 0.1;
                 event.target.style.opacity = result;
-                console.log("im inside of you");
             }
         } else {
             event.target.style.backgroundColor = bgColor;           
