@@ -13,7 +13,6 @@ let option = 0 // 0: color mode, 1: rainbow, 2: shade
 
 
 let mouseDown = false;
-
 document.body.onmousedown = () => (mouseDown = true);
 document.body.onmouseup = () => (mouseDown = false);
 
@@ -63,6 +62,7 @@ grid.addEventListener("mouseover", (event)=>{
             console.log("color is bein painted");
         } else if(option === 1){
             console.log("ranbow is bein painted");
+            event.target.style.backgroundColor = getRainbowColor();
         } else {
             console.log("shade is being painted");
 
@@ -91,4 +91,10 @@ function createGrid(x){
         }
         grid.appendChild(column);
     }
+}
+
+function getRainbowColor(){
+    let index = Math.floor(Math.random() * 13);
+    let colorArray = ["rgb(255,0,0)","rgb(255,127,0)","rgb(255,255,0)","rgb(127,255,0)","rgb(0,255,0)","rgb(0,255,127)","rgb(0,255,255)","rgb(0,127,255)","rgb(0,0,255)","rgb(127,0,255)","rgb(255,0,255)","rgb(255,0,127)"];
+    return colorArray[index];
 }
