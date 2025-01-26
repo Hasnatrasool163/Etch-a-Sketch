@@ -109,10 +109,11 @@ ul {
     flex-direction: column;
 }
 
-.column {
+.row {
     flex-grow: 1;
     border: 0px;
     display: flex;
+    border: 2px solid black;
 }
 
 .cell {

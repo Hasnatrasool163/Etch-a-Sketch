@@ -6,6 +6,7 @@ const clrBtn = document.querySelector("#clear");
 const shade = document.querySelector("#shade-btn");
 const rainbow = document.querySelector("#rainbow-btn");
 const eraser = document.querySelector("#eraser-btn");
+const bucketBtn = document.querySelector("#bucket-btn");
 const span = document.querySelector("#cur-size-span");
 
 let currentColor = "black"
@@ -18,6 +19,7 @@ document.body.onmouseup = () => (mouseDown = false);
 let shadeMdBtn = false;
 let rainbowMdBtn = false; 
 let eraserMdBtn= false; 
+let isBucketMode = false;
 
 createGrid(slider.value);
 //Buttons
@@ -41,6 +43,11 @@ clrBtn.addEventListener("click", () => {
     createGrid(slider.value);
 });
 
+bucketBtn.addEventListener("click", () => {
+    bucketBtn.classList.toggle("selected");
+    isBucketMode = !isBucketMode;
+});
+
 penColor.addEventListener("input", () =>{
    currentColor = penColor.value; 
 });
@@ -50,9 +57,26 @@ slider.addEventListener("input", () =>{
     createGrid(slider.value);
 });
 
+grid.addEventListener("click", (event) => {
+    if(isBucketMode && event.target && event.target.classList.contains("cell")){
+        const rows = grid.querySelectorAll(".row");
+        const arr = Array.from(rows).map(row =>
+            Array.from(row.querySelectorAll(".cell"))
+        );
+    
+
+        const row = event.target.closest(".row");
+        const x = Array.from(rows).indexOf(row);
+        const y = Array.from(row.children).indexOf(event.target);
+
+        floodFill(arr, x ,y, currentColor);
+
+    }
+});
+
 grid.addEventListener("mouseover", (event)=>{
     if(event.target && event.target.classList.contains("cell") && mouseDown == true) {
-        if(eraserMdBtn){
+       if(eraserMdBtn){
             event.target.style.backgroundColor = bgColor;           
             event.target.style.opacity = 0;
        } else if(rainbowMdBtn || shadeMdBtn){
@@ -80,16 +104,16 @@ grid.addEventListener("mouseover", (event)=>{
 
 function createGrid(x){
     for(let i = 0; i < x; i++){
-        const column = document.createElement("div");
-        column.className = "column";
+        const row = document.createElement("div");
+        row.className = "row";
         for(let j = 0; j < x; j++){
             const cell = document.createElement("div");
             cell.className = "cell";
             cell.classList.add("opaque");
             cell.style.backgroundColor = bgColor;
-            column.appendChild(cell);
+            row.appendChild(cell);
         }
-        grid.appendChild(column);
+        grid.appendChild(row);
     }
 
     span.textContent = `${x} x ${x}`;
@@ -99,4 +123,32 @@ function getRainbowColor(){
     let index = Math.floor(Math.random() * 13);
     let colorArray = ["rgb(255,0,0)","rgb(255,127,0)","rgb(255,255,0)","rgb(127,255,0)","rgb(0,255,0)","rgb(0,255,127)","rgb(0,255,255)","rgb(0,127,255)","rgb(0,0,255)","rgb(127,0,255)","rgb(255,0,255)","rgb(255,0,127)"];
     return colorArray[index];
+}
+
+function floodFill(image, r, c, color){
+    if(r < 0 || r >= image.length){
+        return;
+    } else if(c < 0 || c >= image[r].length){
+        return;
+    } else if(image[r][c].style.backgroundColor === color){
+        return;
+    }
+
+    let orignalColor = image[r][c].style.backgroundColor;
+    image[r][c].style.opacity = 1.0;
+    image[r][c].style.backgroundColor = color;
+
+    if( r + 1 < image.length && image[r + 1][c].style.backgroundColor === orignalColor){
+        floodFill(image, r + 1, c, color);
+    } 
+    if( r - 1 >= 0 && image[r - 1][c].style.backgroundColor === orignalColor){
+        floodFill(image, r - 1, c, color);
+    }
+    if( c + 1 < image.length && image[r][c + 1].style.backgroundColor === orignalColor){
+        floodFill(image, r, c + 1, color);
+    } 
+    if( c - 1 >= 0 && image[r][c - 1].style.backgroundColor === orignalColor){
+        floodFill(image, r, c - 1, color);
+    }
+    return;
 }
