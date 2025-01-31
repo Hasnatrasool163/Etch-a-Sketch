@@ -1,132 +1,177 @@
-/*DEFAULT STYLING */
 
-/* 1. Use a more-intuitive box-sizing model */
+
+
+
+
+/* Modern Reset & Base Styles */
 *, *::before, *::after {
   box-sizing: border-box;
-}
-
-/* 2. Remove default margin */
-* {
   margin: 0;
+  padding: 0;
 }
 
 body {
-  /* 3. Add accessible line-height */
-  line-height: 1.5;
-  /* 4. Improve text rendering */
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  font-family: 'Poppins', sans-serif;
+  background: #f8fafc;
+  min-height: 100vh;
 }
 
-/* 5. Improve media defaults */
-img, picture, video, canvas, svg {
-  display: block;
-  max-width: 100%;
+/* Grid & Drawing Area */
+.grid {
+  width: 90vmin;
+  height: 90vmin;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  background: white;
+  display: flex;
+  flex-direction: column;
 }
-
-/* 6. Inherit fonts for form controls */
-input, button, textarea, select {
-  font: inherit;
-}
-
-/* 7. Avoid text overflows */
-p, h1, h2, h3, h4, h5, h6 {
-  overflow-wrap: break-word;
-}
-
-/* 8. Improve line wrapping */
-p {
-  text-wrap: pretty;
-}
-h1, h2, h3, h4, h5, h6 {
-  text-wrap: balance;
-}
-
-/*
-  9. Create a root stacking context
-*/
-#root, #__next {
-  isolation: isolate;
-}
-
-
-/* MAIN STYLES*/
 
 .opaque {
   opacity: 0.0;
 }
 
-.selected {
-  background: #1f52dd;
-  border: #192c5e;
-}
-
-body {
-    background: #fffdf7
-}
-
-li {
-    border: 3px solid yellow;
-}
-
-.container {
-    display: flex;
-}
-
-
-h1 {
-    text-align: center;
-    font-family: 'Caveat', sans-serif;
-    font-size: 5rem;
-    padding-bottom: 2rem;
-}
-
-.side-bar {
-    width: 50vh;
-    height: 90vh;
-    margin-left: 2rem;
-    margin-right: 10rem;
-
-    padding: 3vh 2vw;
-    display: flex;
-    flex-direction: column;
-
-    background-color: grey;
-    border-radius: 10px;
-
-    border: 3px solid green;
-}
-
-ul {
-    list-style: none;
-    padding: 0px;
-}
-
-.grid {
-    width: 90vh;
-    height: 90vh;
-    border: 5px solid cyan;
-    display: flex;
-    flex-direction: column;
-}
-
 .row {
-    flex-grow: 1;
-    border: 0px;
-    display: flex;
+  flex-grow: 1;
+  display: flex;
 }
 
 .cell {
-    flex-grow: 1;
-    border: 0px;
-    user-select: none;
+  flex-grow: 1;
+  transition: background-color 0.1s ease;
+}
+
+/* Control Panel */
+.container {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+  justify-content: space-around;
+  align-items: space-between;
+}
+
+h1 {
+  font-family: 'Caveat', cursive;
+  font-size: 4.5rem;
+  color: #334155;
+  margin: 2rem 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.side-bar {
+  background: #1e293b;
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 #color-options {
-    display: flex;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
 }
 
+/* Buttons & Controls */
+button {
+  background: #475569;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  width: 100%;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+}
 
+button:hover {
+  background: #64748b;
+  transform: translateY(-1px);
+}
 
+button:active {
+  transform: translateY(0);
+}
 
+.selected {
+  background: #4f46e5 !important;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
+#bucket-btn img {
+  filter: invert(1);
+  width: 24px;
+}
 
+/* Slider Styles */
+input[type="range"] {
+  width: 100%;
+  height: 8px;
+  border-radius: 4px;
+  background: #e2e8f0;
+  appearance: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #4f46e5;
+  cursor: pointer;
+}
+
+/* Color Picker */
+.pen-color {
+  width: 50px;
+  height: 50px;
+  border: none;
+  background: none;
+  padding: 4px;
+  cursor: pointer;
+}
+
+.pen-color::-webkit-color-swatch {
+  border-radius: 8px;
+  border: 2px solid #e2e8f0;
+}
+
+/* Utilities */
+.btn-container ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+#cur-size-span {
+  color: white;
+  font-weight: 500;
+  text-align: center;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.card p {
+  color: white;
+  font-size: 0.9rem;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+/* Hover Effects */
+.cell:hover {
+  background-color: #f1f5f9 !important;
+}
