@@ -7,6 +7,7 @@
     <title>Etch-a-Sketch</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Caveat:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="script.js" defer></script>
 </head>
 <body>
@@ -14,34 +15,38 @@
     <h1>ETCH-a-SKETCH</h1>
 
     <div class="container">
-    <div class="side-bar">
-        <div id="color-options">
+        <div class="side-bar">
+            <div id="color-options">
                 <div class="card">
                     <input type="color" class="pen-color">
-                    <p>pen color</p>
+                    <p>Pen Color</p>
                 </div>
                 <div class="card">
                     <button type="button" id="bucket-btn"><img src="./paint-bucket.svg" alt="paint"></button>
-                    <p>paint bucket</p>
+                    <p>Paint Bucket</p>
                 </div>
+            </div>
+            <div class="btn-container">
+                <ul>
+                    <li><button type="button" id="rainbow-btn">Rainbow Mode</button></li>
+                    <li><button type="button" id="shade-btn">Shade Mode</button></li>
+                    <li><button type="button" id="eraser-btn">Eraser</button></li>
+                </ul>
+            </div>
+            <div>
+                <button type="button" id="undo-btn">Undo</button>
+                <button type="button" id="redo-btn">Redo</button>
+            </div>
+            <div>
+                <span id="cur-size-span">16 x 16</span>
+                <input class="slider" type="range" min="2" max="64" value="16">
+            </div>
+            <button type="button" id="save-btn">Save Drawing</button>
+            <button type="button" id="load-btn">Load Drawing</button>
+            <button type="button" id="export-btn">Export as Image</button>
+            <button type="button" id="clear">Clear</button>
         </div>
-        <div class="btn-container">
-            <ul>
-                <li><button type="button" id="rainbow-btn">rainbow mode</button></li>
-                <li><button type="button" id="shade-btn">shade mode</button></li>
-                <li><button type="button" id="eraser-btn">Eraser</button></li>
-            <ul>
-        </div>
-        <div>
-           <span id="cur-size-span"> </span> 
-            <input class="slider" type="range" min="2" max="64" value="16">
-        </div>
-        <button type="button" id="clear">Clear</button>
-    </div>
-    <div class="grid"></div>
+        <div class="grid"></div>
     </div>
 </body>
-
-
-
 </html>
